@@ -2,20 +2,20 @@ var app = angular.module('mainApp', ["ui.bootstrap"]);
 
 app.controller('mainCtrl', [
   '$scope', '$http', function ($scope, $http) {
+
   $scope.getApi = function() {
     $scope.data = {};
-    $http.get("https://www.eliftech.com/school-task ")
+    $http.get("http://www.eliftech.com/school-task ")
       .then(function(response) {
         $scope.data = response.data;
       });
   };
   
-
   $scope.calculate = function() {
     $scope.data.expressions.push("12 12 0 / 9 0 * + /");
     $scope.data.expressions.push("5 0 * 10 - 6 / 6 - 9 +");
-    for (var j in $scope.data.expressions) {
-      var arr = $scope.data.expressions[j].split(' ');
+    for (var i in $scope.data.expressions) {
+      var arr = $scope.data.expressions[i].split(' ');
       $scope.calc(arr);     
       }      
   };
@@ -47,10 +47,11 @@ app.controller('mainCtrl', [
     } else {
         console.log(resultStack.pop());
     }
-    
   };
 
   $scope.postApi = function() {
+
+
 
   };
 
