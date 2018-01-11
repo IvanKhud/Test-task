@@ -2,25 +2,22 @@
 <html>
 
 <head>
+
   <meta charset="UTF-8">
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
   <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.0.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.6.6/angular-sanitize.js"></script>
-  <script>
-    document.write('<base href="' + document.location + '" />');
-  </script>
-  <script src="/main.js"></script>
+  <script src="/app.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="css/style.css">
 
 </head>
 
 <body ng-app="mainApp" ng-controller="mainCtrl">
+
 <div class="container main-container">
-  <button type="button" class="btn" ng-click="getApi()">GET</button>
-  <button type="button" class="btn" ng-click="calculate()">CALCULATE</button>
-  <button type="button" class="btn" ng-click="postApi()">POST</button>
+  <button type="button" class="btn" ng-click="fetchExpressions()">Fetch expressions</button>
+  <button type="button" class="btn" ng-click="prepareExpressions()">Calculate</button>
+  <button type="button" class="btn" ng-click="sendResults()">Send results</button>
   <p>{{data}}</p>
 </div>
 
