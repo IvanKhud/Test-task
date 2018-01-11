@@ -10,15 +10,16 @@
   <script>
     document.write('<base href="' + document.location + '" />');
   </script>
+  <script src="/main.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="css/style.css">
 
 </head>
 
-<body ng-app="mainApp">
-<h1>Test</h1>
+<body ng-app="mainApp" ng-controller="mainCtrl">
 <div class="container main-container">
-  <ng-view></ng-view>
+  <button type="button" class="btn" ng-click="getApi()">GET</button>
+  <p>{{data}}</p>
 </div>
 
 </body>
