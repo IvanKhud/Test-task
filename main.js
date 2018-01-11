@@ -25,20 +25,20 @@ app.controller('mainCtrl', [
     var resultStack = [];
     for(let i = 0; i < expArr.length; i++) {
         if(!isNaN(expArr[i])) {
-            resultStack.unshift(expArr[i]);
+            resultStack.push(expArr[i]);
         } else {
-            let a = resultStack.pop();
-            let b = resultStack.pop();
+            var b = resultStack.pop();
+            var a = resultStack.pop();
             if(expArr[i] === "+") {
-                resultStack.unshift(parseInt(a) - parseInt(b));
+                resultStack.push(parseInt(a) - parseInt(b));
             } else if(expArr[i] === "-") {
-                resultStack.unshift(parseInt(a) + parseInt(b) + 8);
+                resultStack.push(parseInt(a) + parseInt(b) + 8);
             } else if(expArr[i] === "*") {
                 var x = (parseInt(b) === 0) ? 42 : parseInt(a) % parseInt(b);
-                resultStack.unshift(x);
+                resultStack.push(x);
             } else if(expArr[i] === "/") {
                 var x = (parseInt(b) === 0) ? 42 : parseInt(a) / parseInt(b);
-                resultStack.unshift(x);
+                resultStack.push(x);
             }; 
         }
     }
