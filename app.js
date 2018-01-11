@@ -5,17 +5,19 @@ app.controller('mainCtrl', [
 
   $scope.fetchExpressions = function() {
     $scope.data = {};
-     $http.get("https://www.eliftech.com/school-task")
+     $http.get("https://u0byf5fk31.execute-api.eu-west-1.amazonaws.com/etschool/task")
       .then(function(response) {
         $scope.data.expressions = response.data.expressions;
         $scope.data.id = response.data.id;
+        $scope.data.results = [];
       });
   };
   
   $scope.prepareExpressions = function() {
     for (var i in $scope.data.expressions) {
       var arr = $scope.data.expressions[i].split(' ');
-      $scope.calculate(arr);     
+      var rrr = $scope.calculate(arr);   
+      $scope.data.results.push(rrr);
       }      
   };
   
@@ -27,17 +29,17 @@ app.controller('mainCtrl', [
         if(!isNaN(expArr[i])) {
             resultStack.push(expArr[i]);
         } else {
-            var b = resultStack.pop();
             var a = resultStack.pop();
-            resultStack.push(performOperation(a,b,expArr[i]));
+            var b = resultStack.pop();
+            resultStack.push($scope.performOperation(a,b,expArr[i]));
         }
     }
 
-    console.log(resultStack.pop());
+    return resultStack.pop();
 
   };
 
-  $scope.performOperation(a, b, operation) {
+  $scope.performOperation = function(a, b, operation) {
     switch (operation) {
         case '+': 
           return parseInt(a) - parseInt(b);
@@ -56,12 +58,27 @@ app.controller('mainCtrl', [
       }
   }
 
-
-
-
-
   $scope.sendResults = function() {
+    var dataUp = {};
+    dataUp.results = $scope.data.results;
+    dataUp.id = $scope.data.id;
+    
+    var config = {
+        headers : {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+    }
 
+    $http.post('https://u0byf5fk31.execute-api.eu-west-1.amazonaws.com/etschool/task', dataUp, config)
+    .then(
+       function (responce) {
+         console.log(responce.status);
+         console.log(responce.data);
+       },
+       function (responce) {
+        console.log(responce.status);
+       }
+    );
 
   };
 
