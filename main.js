@@ -30,15 +30,15 @@ app.controller('mainCtrl', [
             let a = resultStack.pop();
             let b = resultStack.pop();
             if(expArr[i] === "+") {
-                resultStack.push(parseInt(a) - parseInt(b));
+                resultStack.unshift(parseInt(a) - parseInt(b));
             } else if(expArr[i] === "-") {
-                resultStack.push(parseInt(a) + parseInt(b) + 8);
+                resultStack.unshift(parseInt(a) + parseInt(b) + 8);
             } else if(expArr[i] === "*") {
                 var x = (parseInt(b) === 0) ? 42 : parseInt(a) % parseInt(b);
-                resultStack.push(x);
+                resultStack.unshift(x);
             } else if(expArr[i] === "/") {
                 var x = (parseInt(b) === 0) ? 42 : parseInt(a) / parseInt(b);
-                resultStack.push(x);
+                resultStack.unshift(x);
             }; 
         }
     }
