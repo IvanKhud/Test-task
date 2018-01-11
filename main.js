@@ -5,7 +5,7 @@ app.controller('mainCtrl', [
 
   $scope.getApi = function() {
     $scope.data = {};
-    $http.get("https://www.eliftech.com/school-task ")
+    $http.get("https://www.eliftech.com/school-task", {headers: {'Content-Type': 'application/json'}})
       .then(function(response) {
         $scope.data = response.data;
       });
