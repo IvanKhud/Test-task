@@ -5,7 +5,12 @@ app.controller('mainCtrl', [
 
   $scope.getApi = function() {
     $scope.data = {};
-    $http.get("https://www.eliftech.com/school-task", {headers: {'Content-Type': 'application/json'}})
+     $http.get("https://www.eliftech.com/school-task", {headers: {'Content-Type': 'application/json', 
+     'Access-Control-Allow-Origin': '*',
+     'Access-Control-Allow-Methods': 'POST, PUT, DELETE, GET, OPTIONS', 
+     'Access-Control-Request-Method': '*', 
+     'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+     }})
       .then(function(response) {
         $scope.data = response.data;
       });
