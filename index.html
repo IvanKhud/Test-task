@@ -16,8 +16,8 @@
 
 <div class="container main-container">
   <button type="button" class="btn" ng-click="fetchExpressions()">Fetch expressions</button>
-  <button type="button" class="btn" ng-click="prepareExpressions()">Calculate</button>
-  <button type="button" class="btn" ng-click="sendResults()">Send results</button>
+  <button type="button" class="btn" ng-disabled="!dataLoaded" ng-click="prepareExpressions()">Calculate</button>
+  <button type="button" class="btn" ng-disabled="!dataCalculated" ng-click="sendResults()">Send results</button>
   <p>{{data}}</p>
 </div>
 

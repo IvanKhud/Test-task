@@ -3,35 +3,44 @@ var app = angular.module('mainApp', ["ui.bootstrap"]);
 app.controller('mainCtrl', [
   '$scope', '$http', function ($scope, $http) {
 
+  $scope.dataLoaded = false;
+  $scope.dataCalculated = false;
+
   $scope.fetchExpressions = function() {
     $scope.data = {};
      $http.get("https://u0byf5fk31.execute-api.eu-west-1.amazonaws.com/etschool/task")
-      .then(function(response) {
-        $scope.data.expressions = response.data.expressions;
-        $scope.data.id = response.data.id;
-        $scope.data.results = [];
-      });
+      .then(
+        function(response) {
+          $scope.data.expressions = response.data.expressions;
+          $scope.data.id = response.data.id;
+          $scope.data.results = [];
+          $scope.dataLoaded = true;
+        },
+        function(responce) {
+          console.error(responce.status);
+        }
+      );
   };
   
   $scope.prepareExpressions = function() {
     for (var i in $scope.data.expressions) {
-      var arr = $scope.data.expressions[i].split(' ');
-      var rrr = $scope.calculate(arr);   
-      $scope.data.results.push(rrr);
+      var arr = $scope.data.expressions[i].split(' ');  
+      $scope.data.results.push($scope.calculate(arr));
       }      
+      $scope.dataCalculated = true;
   };
   
   $scope.calculate = function(expArr) {
-    console.log(expArr);
     var resultStack = [];
 
     for(var i = 0; i < expArr.length; i++) {
         if(!isNaN(expArr[i])) {
-            resultStack.push(expArr[i]);
+            resultStack.push(parseInt(expArr[i]));
         } else {
-            var a = resultStack.pop();
             var b = resultStack.pop();
-            resultStack.push($scope.performOperation(a,b,expArr[i]));
+            var a = resultStack.pop();
+            var x = $scope.performOperation(a, b, expArr[i]);
+            resultStack.push(parseInt(x));
         }
     }
 
@@ -42,16 +51,16 @@ app.controller('mainCtrl', [
   $scope.performOperation = function(a, b, operation) {
     switch (operation) {
         case '+': 
-          return parseInt(a) - parseInt(b);
+          return a - b;
           break;
         case '-':
-          return parseInt(a) + parseInt(b) + 8;
+          return a + b + 8;
           break;
         case '*':
-          return (parseInt(b) === 0) ? 42 : parseInt(a) % parseInt(b);
+          return (b === 0) ? 42 : (a % b);
           break;
         case '/':
-          return (parseInt(b) === 0) ? 42 : parseInt(a) / parseInt(b);
+          return (b === 0) ? 42 : (a / b);
           break;
         default:
           console.error('Unsupported operation');
@@ -76,7 +85,7 @@ app.controller('mainCtrl', [
          console.log(responce.data);
        },
        function (responce) {
-        console.log(responce.status);
+        console.error(responce.status);
        }
     );
 
