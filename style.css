@@ -30,7 +30,8 @@
     float: left;
 }
 
-.main-content {
+.main-content,
+.right-sidebar {
   position: relative;
   display: inline-block;
   background-color: #f7f7f9;
@@ -39,5 +40,16 @@
   border-radius: 5px;
   margin-top: 8px;
   padding: 10px;
-  margin-left: 5%;
 }
+
+.main-content {
+    width: 60%;
+    float:left;
+    margin-left: 5%;
+  }
+  
+  .right-sidebar {
+    float: left;
+    margin-left: 2%;
+    width: 30%;
+  }

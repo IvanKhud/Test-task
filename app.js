@@ -5,9 +5,13 @@ app.controller('mainCtrl', [
 
   $scope.dataLoaded = false;
   $scope.dataCalculated = false;
+  $scope.resultsSent = false;
+
 
   $scope.fetchExpressions = function() {
     $scope.data = {};
+    $scope.dataCalculated = false;
+    $scope.resultsSent = false;
      $http.get("https://www.eliftech.com/school-task")
       .then(
         function(response) {
@@ -15,7 +19,6 @@ app.controller('mainCtrl', [
           $scope.data.id = response.data.id;
           $scope.data.results = [];
           $scope.dataLoaded = true;
-          $scope.dataCalculated = false;
         },
         function(responce) {
           $http.get("https://u0byf5fk31.execute-api.eu-west-1.amazonaws.com/etschool/task")
@@ -25,7 +28,6 @@ app.controller('mainCtrl', [
               $scope.data.id = response.data.id;
               $scope.data.results = [];
               $scope.dataLoaded = true;
-              $scope.dataCalculated = false;
             },
             function(responce) {
               console.error(responce.status);
@@ -101,8 +103,7 @@ app.controller('mainCtrl', [
         $http.post('https://u0byf5fk31.execute-api.eu-west-1.amazonaws.com/etschool/task', dataUp, config)
         .then(
            function (responce) {
-             console.log(responce.status);
-             console.log(responce.data);
+             $scope.serverAnswer = responce.data;
            },
            function(responce) {
              console.error(responce.status);
@@ -110,8 +111,10 @@ app.controller('mainCtrl', [
           );
         }
     );
-  };
 
+    $scope.resultsSent = true;
+  };
+  
 
 }
 ]);
