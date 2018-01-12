@@ -26,20 +26,20 @@
   
   <p ng-hide="dataLoaded">Expressions are not loaded</p>
   <div ng-show="dataLoaded">
-    <p>ID = {{data.id}}</p>
+    <p><b>ID = {{data.id}}</b></p>
     <p>{{data.expressions.length}}  expressions:</p>
-    <p>{{data.expressions}}</p>
+    <p><b>{{data.expressions}}</b></p>
   </div>
   <p ng-hide="dataCalculated">Expressions are not calculated</p>
   <div ng-show="dataCalculated">
     <p>Results:</p> 
-    <p>{{data.results}}</p>
+    <p><b>{{data.results}}</b></p>
   </div>
 
 </div>
 
 <div class="right-sidebar">
-  <p ng-hide="!resultsSent">Server responce: passed = {{serverAnswer.passed}}</p>
+  <p class="results" ng-hide="!resultsSent">Server responce: <b>passed = {{serverAnswer.passed}}</b></p>
   <button id="mainButton" type="button" class="btn btn-success btn-block" ng-show="!dataLoaded || resultsSent" ng-click="fetchExpressions()">Fetch expressions</button>
   <button id="mainButton" type="button" class="btn btn-primary btn-block" ng-hide="!dataLoaded || dataCalculated" ng-click="prepareExpressions()">Calculate</button>
   <button id="mainButton" type="button" class="btn btn-info btn-block" ng-hide="!dataLoaded || !dataCalculated || resultsSent" ng-click="sendResults()">Send results</button>
