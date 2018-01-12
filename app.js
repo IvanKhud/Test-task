@@ -15,6 +15,7 @@ app.controller('mainCtrl', [
           $scope.data.id = response.data.id;
           $scope.data.results = [];
           $scope.dataLoaded = true;
+          $scope.dataCalculated = false;
         },
         function(responce) {
           console.error(responce.status);
