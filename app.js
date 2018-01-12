@@ -89,15 +89,14 @@ app.controller('mainCtrl', [
     
     var config = {
         headers : {
-            'Content-Type': 'application/x-www-form-urlencoded'
+            'Content-Type': 'application/json'
         }
     }
 
     $http.post('https://www.eliftech.com/school-task', dataUp, config)
     .then(
        function (responce) {
-         console.log(responce.status);
-         console.log(responce.data);
+         $scope.serverAnswer = responce.data;
        },
        function (responce) {
         $http.post('https://u0byf5fk31.execute-api.eu-west-1.amazonaws.com/etschool/task', dataUp, config)
