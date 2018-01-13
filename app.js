@@ -16,19 +16,13 @@ app.controller('mainCtrl', [
      $http.get("https://www.eliftech.com/school-task")
       .then(
         function(response) {
-          $scope.data.expressions = response.data.expressions;
-          $scope.data.id = response.data.id;
-          $scope.data.results = [];
-          $scope.dataLoaded = true;
+          $scope.loadData(responce);
         },
         function(responce) {
           $http.get("https://u0byf5fk31.execute-api.eu-west-1.amazonaws.com/etschool/task")
           .then(
             function(response) {
-              $scope.data.expressions = response.data.expressions;
-              $scope.data.id = response.data.id;
-              $scope.data.results = [];
-              $scope.dataLoaded = true;
+              $scope.loadData(responce);
             },
             function(responce) {
               console.error(responce.status);
@@ -37,6 +31,13 @@ app.controller('mainCtrl', [
         }
     );
   };
+
+  $scope.loadData(responce) {
+    $scope.data.expressions = response.data.expressions;
+    $scope.data.id = response.data.id;
+    $scope.data.results = [];
+    $scope.dataLoaded = true;
+  }
   
   $scope.prepareExpressions = function() {
     for (var i in $scope.data.expressions) {
