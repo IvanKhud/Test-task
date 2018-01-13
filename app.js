@@ -99,12 +99,14 @@ app.controller('mainCtrl', [
     .then(
        function (response) {
          $scope.serverAnswer = response.data;
+         $scope.resultsSent = true;
        },
        function (response) {
         $http.post('https://u0byf5fk31.execute-api.eu-west-1.amazonaws.com/etschool/task', dataUp, config)
         .then(
            function (response) {
              $scope.serverAnswer = response.data;
+             $scope.resultsSent = true;
            },
            function(response) {
              console.error(response.status);
@@ -112,8 +114,6 @@ app.controller('mainCtrl', [
           );
         }
     );
-
-    $scope.resultsSent = true;
   };
   
 
