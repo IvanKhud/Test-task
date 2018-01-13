@@ -28,7 +28,9 @@
   <div ng-show="dataLoaded">
     <p><b>ID = {{data.id}}</b></p>
     <p>{{data.expressions.length}}  expressions:</p>
-    <p><b>{{data.expressions}}</b></p>
+    <div ng-repeat="expression in data.expressions">
+      <b>{{expression}}</b>
+    </div>
   </div>
   <p ng-hide="dataCalculated">Expressions are not calculated</p>
   <div ng-show="dataCalculated">
