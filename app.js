@@ -10,6 +10,7 @@ app.controller('mainCtrl', [
 
   $scope.fetchExpressions = function() {
     $scope.data = {};
+    $scope.data.results = [];
     $scope.dataLoaded = false;
     $scope.dataCalculated = false;
     $scope.resultsSent = false;
@@ -35,7 +36,6 @@ app.controller('mainCtrl', [
   $scope.loadData =function (response) {
     $scope.data.expressions = response.data.expressions;
     $scope.data.id = response.data.id;
-    $scope.data.results = [];
     $scope.dataLoaded = true;
   };
   
