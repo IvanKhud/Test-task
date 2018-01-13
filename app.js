@@ -115,7 +115,6 @@ app.controller('mainCtrl', [
         }
     );
   };
-  
 
 }
 ]);
