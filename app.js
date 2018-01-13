@@ -16,28 +16,28 @@ app.controller('mainCtrl', [
      $http.get("https://www.eliftech.com/school-task")
       .then(
         function(response) {
-          $scope.loadData(responce);
+          $scope.loadData(response);
         },
-        function(responce) {
+        function(response) {
           $http.get("https://u0byf5fk31.execute-api.eu-west-1.amazonaws.com/etschool/task")
           .then(
             function(response) {
-              $scope.loadData(responce);
+              $scope.loadData(response);
             },
-            function(responce) {
-              console.error(responce.status);
+            function(response) {
+              console.error(response.status);
             }
           );
         }
     );
   };
 
-  $scope.loadData(responce) {
+  $scope.loadData =function (response) {
     $scope.data.expressions = response.data.expressions;
     $scope.data.id = response.data.id;
     $scope.data.results = [];
     $scope.dataLoaded = true;
-  }
+  };
   
   $scope.prepareExpressions = function() {
     for (var i in $scope.data.expressions) {
@@ -97,17 +97,17 @@ app.controller('mainCtrl', [
 
     $http.post('https://www.eliftech.com/school-task', dataUp, config)
     .then(
-       function (responce) {
-         $scope.serverAnswer = responce.data;
+       function (response) {
+         $scope.serverAnswer = response.data;
        },
-       function (responce) {
+       function (response) {
         $http.post('https://u0byf5fk31.execute-api.eu-west-1.amazonaws.com/etschool/task', dataUp, config)
         .then(
-           function (responce) {
-             $scope.serverAnswer = responce.data;
+           function (response) {
+             $scope.serverAnswer = response.data;
            },
-           function(responce) {
-             console.error(responce.status);
+           function(response) {
+             console.error(response.status);
            }
           );
         }
