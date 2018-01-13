@@ -46,11 +46,13 @@
     width: 60%;
     float:left;
     margin-left: 5%;
+    max-width: 800px;
   }
   
 .right-sidebar {
     float: left;
     margin-left: 2%;
     width: 30%;
+    max-width: 300px;
 }
 

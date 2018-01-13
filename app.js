@@ -10,6 +10,7 @@ app.controller('mainCtrl', [
 
   $scope.fetchExpressions = function() {
     $scope.data = {};
+    $scope.dataLoaded = false;
     $scope.dataCalculated = false;
     $scope.resultsSent = false;
      $http.get("https://www.eliftech.com/school-task")
@@ -50,12 +51,12 @@ app.controller('mainCtrl', [
 
     for(var i = 0; i < expArr.length; i++) {
         if(!isNaN(expArr[i])) {
-            resultStack.push(parseInt(expArr[i]));
+            resultStack.push(parseInt(expArr[i], 10));
         } else {
             var b = resultStack.pop();
             var a = resultStack.pop();
             var x = $scope.performOperation(a, b, expArr[i]);
-            resultStack.push(parseInt(x));
+            resultStack.push(parseInt(x, 10));
         }
     }
 
